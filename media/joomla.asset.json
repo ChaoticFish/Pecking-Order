@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "mod_peckingorder",
+  "version": "1.0.2",
+  "description": "Pecking Order org chart",
+  "license": "GPL-2.0-or-later",
+  "assets": [
+    { "name": "mod_peckingorder.chart", "type": "style", "uri": "mod_peckingorder/pecking-order.css" },
+    { "name": "mod_peckingorder.chart", "type": "script", "uri": "mod_peckingorder/pecking-order.min.js", "attributes": { "defer": true } },
+    { "name": "mod_peckingorder.admin", "type": "style", "uri": "mod_peckingorder/admin-tools.css" },
+    { "name": "mod_peckingorder.admin", "type": "script", "uri": "mod_peckingorder/admin-tools.min.js", "dependencies": ["core", "mod_peckingorder.chart"], "attributes": { "defer": true } }
+  ]
+}

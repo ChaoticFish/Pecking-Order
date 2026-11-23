@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="module" client="site" method="upgrade">
+    <name>mod_peckingorder</name>
+    <author>Chaotic Fish Design</author>
+    <creationDate>2026-11-23</creationDate>
+    <copyright>(C) 2026 Chaotic Fish Design</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <authorEmail>weirdideas@chaoticfishdesign.com</authorEmail>
+    <authorUrl>https://chaoticfishdesign.com</authorUrl>
+    <version>1.0.2</version>
+    <description>MOD_PECKINGORDER_XML_DESCRIPTION</description>
+    <scriptfile>script.php</scriptfile>
+    <namespace path="src">ChaoticFishDesign\Module\PeckingOrder</namespace>
+    <files>
+        <folder module="mod_peckingorder">services</folder>
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
+    <languages>
+        <language tag="en-GB">language/en-GB/mod_peckingorder.ini</language>
+        <language tag="en-GB">language/en-GB/mod_peckingorder.sys.ini</language>
+    </languages>
+    <media destination="mod_peckingorder" folder="media">
+        <filename>joomla.asset.json</filename>
+        <folder>css</folder>
+        <folder>js</folder>
+        <folder>samples</folder>
+        <folder>studio</folder>
+    </media>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" label="MOD_PECKINGORDER_FIELDSET_DATA" addfieldprefix="ChaoticFishDesign\Module\PeckingOrder\Site\Field">
+                <field name="data_source" type="radio" layout="joomla.form.field.radio.buttons" default="media"
+                    label="MOD_PECKINGORDER_DATA_SOURCE" description="MOD_PECKINGORDER_DATA_SOURCE_DESC">
+                    <option value="media">MOD_PECKINGORDER_DATA_SOURCE_MEDIA</option>
+                    <option value="path">MOD_PECKINGORDER_DATA_SOURCE_PATH</option>
+                </field>
+                <field name="data_file" type="media" types="documents" preview="false" showon="data_source:media"
+                    label="MOD_PECKINGORDER_DATA_FILE" description="MOD_PECKINGORDER_DATA_FILE_DESC" />
+                <field name="data_path" type="Datapath" filter="path" hint="files/orgcharts/org-chart.json" showon="data_source:path"
+                    label="MOD_PECKINGORDER_DATA_PATH" description="MOD_PECKINGORDER_DATA_PATH_DESC" />
+                <field name="datatools" type="Datatools" label="MOD_PECKINGORDER_TOOLS" hiddenLabel="true" />
+                <field name="unit_desc" type="radio" layout="joomla.form.field.radio.switcher" default="1"
+                    label="MOD_PECKINGORDER_UNIT_DESC" description="MOD_PECKINGORDER_UNIT_DESC_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="show_errors" type="radio" layout="joomla.form.field.radio.switcher" default="1"
+                    label="MOD_PECKINGORDER_SHOW_ERRORS" description="MOD_PECKINGORDER_SHOW_ERRORS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            <fieldset name="privacy" label="MOD_PECKINGORDER_FIELDSET_PRIVACY">
+                <field name="privacy_note" type="note" description="MOD_PECKINGORDER_PRIVACY_NOTE" />
+                <field name="vis_org" type="accesslevel" default="1" label="MOD_PECKINGORDER_VIS_ORG" description="MOD_PECKINGORDER_VIS_ORG_DESC">
+                    <option value="-1">MOD_PECKINGORDER_VIS_HIDDEN</option>
+                </field>
+                <field name="vis_contact" type="accesslevel" default="2" label="MOD_PECKINGORDER_VIS_CONTACT" description="MOD_PECKINGORDER_VIS_CONTACT_DESC">
+                    <option value="-1">MOD_PECKINGORDER_VIS_HIDDEN</option>
+                </field>
+                <field name="vis_place" type="accesslevel" default="2" label="MOD_PECKINGORDER_VIS_PLACE" description="MOD_PECKINGORDER_VIS_PLACE_DESC">
+                    <option value="-1">MOD_PECKINGORDER_VIS_HIDDEN</option>
+                </field>
+                <field name="vis_photo" type="accesslevel" default="1" label="MOD_PECKINGORDER_VIS_PHOTO" description="MOD_PECKINGORDER_VIS_PHOTO_DESC">
+                    <option value="-1">MOD_PECKINGORDER_VIS_HIDDEN</option>
+                </field>
+            </fieldset>
+            <fieldset name="look" label="MOD_PECKINGORDER_FIELDSET_LOOK">
+                <field name="mode" type="list" default="sparkle" label="MOD_PECKINGORDER_MODE" description="MOD_PECKINGORDER_MODE_DESC">
+                    <option value="sparkle">MOD_PECKINGORDER_MODE_SPARKLE</option>
+                    <option value="sad">MOD_PECKINGORDER_MODE_SAD</option>
+                </field>
+                <field name="line_style" type="list" default="solid" label="MOD_PECKINGORDER_LINE_STYLE">
+                    <option value="solid">MOD_PECKINGORDER_LINE_SOLID</option>
+                    <option value="dashed">MOD_PECKINGORDER_LINE_DASHED</option>
+                    <option value="dotted">MOD_PECKINGORDER_LINE_DOTTED</option>
+                </field>
+                <field name="line_color" type="color" default="#8a99a3" label="MOD_PECKINGORDER_LINE_COLOR" />
+                <field name="accent" type="color" default="#05b5c3" label="MOD_PECKINGORDER_ACCENT" description="MOD_PECKINGORDER_ACCENT_DESC" />
+                <field name="chart_bg" type="list" default="default" label="MOD_PECKINGORDER_BG" description="MOD_PECKINGORDER_BG_DESC">
+                    <option value="default">MOD_PECKINGORDER_BG_DEFAULT</option>
+                    <option value="transparent">MOD_PECKINGORDER_BG_TRANSPARENT</option>
+                    <option value="custom">MOD_PECKINGORDER_BG_CUSTOM</option>
+                </field>
+                <field name="chart_bg_color" type="color" default="#f4f7f8" label="MOD_PECKINGORDER_BG_COLOR" showon="chart_bg:custom" />
+                <field name="chart_border" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_BORDER" showon="chart_bg!:transparent">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="dotted_lines" type="list" default="hover" label="MOD_PECKINGORDER_DOTTED" description="MOD_PECKINGORDER_DOTTED_DESC">
+                    <option value="hover">MOD_PECKINGORDER_DOTTED_HOVER</option>
+                    <option value="always">MOD_PECKINGORDER_DOTTED_ALWAYS</option>
+                    <option value="off">MOD_PECKINGORDER_DOTTED_OFF</option>
+                </field>
+                <field name="card_bg" type="text" default="" hint="#f6f8fa, rgba(…), var(--brand)" label="MOD_PECKINGORDER_CARD_BG" description="MOD_PECKINGORDER_CARD_BG_DESC" />
+                <field name="card_color" type="text" default="" hint="Automatic" label="MOD_PECKINGORDER_CARD_COLOR" description="MOD_PECKINGORDER_CARD_COLOR_DESC" showon="card_bg!:" />
+                <field name="card_width" type="number" default="250" min="160" max="420" step="10" label="MOD_PECKINGORDER_CARD_WIDTH" description="MOD_PECKINGORDER_PX" />
+                <field name="gap" type="number" default="28" min="12" max="64" step="2" label="MOD_PECKINGORDER_GAP" description="MOD_PECKINGORDER_PX" />
+                <field name="chart_height" type="text" default="" hint="70vh" label="MOD_PECKINGORDER_HEIGHT" description="MOD_PECKINGORDER_HEIGHT_DESC" />
+                <field name="start_depth" type="number" default="0" min="0" max="20" step="1" label="MOD_PECKINGORDER_START_DEPTH" description="MOD_PECKINGORDER_START_DEPTH_DESC" />
+                <field name="direction" type="list" default="down" label="MOD_PECKINGORDER_DIRECTION" description="MOD_PECKINGORDER_DIRECTION_DESC" validate="options">
+                    <option value="down">MOD_PECKINGORDER_DIRECTION_DOWN</option>
+                    <option value="right">MOD_PECKINGORDER_DIRECTION_RIGHT</option>
+                </field>
+                <field name="deputy_style" type="list" default="inside" label="MOD_PECKINGORDER_DEPUTY_STYLE" description="MOD_PECKINGORDER_DEPUTY_STYLE_DESC" validate="options">
+                    <option value="inside">MOD_PECKINGORDER_DEPUTY_INSIDE</option>
+                    <option value="beside">MOD_PECKINGORDER_DEPUTY_BESIDE</option>
+                    <option value="stem">MOD_PECKINGORDER_DEPUTY_STEM</option>
+                </field>
+                <field name="new_days" type="number" default="90" min="0" max="730" step="1" filter="integer" label="MOD_PECKINGORDER_NEW_DAYS" description="MOD_PECKINGORDER_NEW_DAYS_DESC" />
+                <field name="legend" type="textarea" rows="4" default="" filter="string" label="MOD_PECKINGORDER_LEGEND" description="MOD_PECKINGORDER_LEGEND_DESC" hint="#7b4fd6 = Engineering" />
+                <field name="wrap_at" showon="direction:down" type="number" default="6" min="0" max="50" step="1" label="MOD_PECKINGORDER_WRAP_AT" description="MOD_PECKINGORDER_WRAP_AT_DESC" />
+                <field name="mobile_layout" type="list" default="list" label="MOD_PECKINGORDER_MOBILE" description="MOD_PECKINGORDER_MOBILE_DESC">
+                    <option value="list">MOD_PECKINGORDER_MOBILE_LIST</option>
+                    <option value="chart">MOD_PECKINGORDER_MOBILE_CHART</option>
+                </field>
+                <field name="mobile_at" type="list" default="md" label="MOD_PECKINGORDER_MOBILE_AT" description="MOD_PECKINGORDER_MOBILE_AT_DESC" showon="mobile_layout:list">
+                    <option value="sm">MOD_PECKINGORDER_BP_SM</option>
+                    <option value="md">MOD_PECKINGORDER_BP_MD</option>
+                    <option value="lg">MOD_PECKINGORDER_BP_LG</option>
+                    <option value="xl">MOD_PECKINGORDER_BP_XL</option>
+                    <option value="custom">MOD_PECKINGORDER_BP_CUSTOM</option>
+                </field>
+                <field name="list_at" type="number" default="640" min="0" max="2000" step="10" label="MOD_PECKINGORDER_LIST_AT" description="MOD_PECKINGORDER_LIST_AT_DESC" showon="mobile_layout:list[AND]mobile_at:custom" />
+                <field name="fx_note" type="note" label="MOD_PECKINGORDER_FX" description="MOD_PECKINGORDER_FX_DESC" />
+                <field name="fx_school" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_FX_SCHOOL" description="MOD_PECKINGORDER_FX_SCHOOL_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="fx_swim" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_FX_SWIM" description="MOD_PECKINGORDER_FX_SWIM_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="fx_ping" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_FX_PING" description="MOD_PECKINGORDER_FX_PING_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="fx_trail" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_FX_TRAIL" description="MOD_PECKINGORDER_FX_TRAIL_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="fx_reel" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_FX_REEL" description="MOD_PECKINGORDER_FX_REEL_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="fx_depth" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_FX_DEPTH" description="MOD_PECKINGORDER_FX_DEPTH_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="fx_rooster" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_FX_ROOSTER" description="MOD_PECKINGORDER_FX_ROOSTER_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="fx_konami" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_FX_KONAMI" description="MOD_PECKINGORDER_FX_KONAMI_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="fx_tags" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_FX_TAGS" description="MOD_PECKINGORDER_FX_TAGS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            <fieldset name="controls" label="MOD_PECKINGORDER_FIELDSET_CONTROLS">
+                <field name="show_search" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_SHOW_SEARCH">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="show_zoom" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_SHOW_ZOOM">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="show_mode_toggle" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_SHOW_MODE">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="show_filters" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_SHOW_FILTERS" description="MOD_PECKINGORDER_SHOW_FILTERS_DESC">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="show_list_toggle" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_SHOW_LIST_TOGGLE" description="MOD_PECKINGORDER_SHOW_LIST_TOGGLE_DESC">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="show_updated" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_SHOW_UPDATED" description="MOD_PECKINGORDER_SHOW_UPDATED_DESC">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="show_help" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_SHOW_HELP">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+            </fieldset>
+            <fieldset name="export" label="MOD_PECKINGORDER_FIELDSET_EXPORT">
+                <field name="export_note" type="note" class="alert alert-info" description="MOD_PECKINGORDER_EXPORT_NOTE" />
+                <field name="show_export" type="accesslevel" default="1" label="MOD_PECKINGORDER_SHOW_EXPORT" description="MOD_PECKINGORDER_SHOW_EXPORT_DESC">
+                    <option value="-1">MOD_PECKINGORDER_VIS_HIDDEN</option>
+                </field>
+                <field name="export_title" type="text" default="" filter="string" label="MOD_PECKINGORDER_EXPORT_TITLE" description="MOD_PECKINGORDER_EXPORT_TITLE_DESC" />
+                <field name="export_date" type="radio" layout="joomla.form.field.radio.switcher" default="1" label="MOD_PECKINGORDER_EXPORT_DATE" description="MOD_PECKINGORDER_EXPORT_DATE_DESC">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="export_name" type="text" default="org-chart" filter="string" label="MOD_PECKINGORDER_EXPORT_NAME" description="MOD_PECKINGORDER_EXPORT_NAME_DESC" />
+                <field name="page_size" type="list" default="letter" label="MOD_PECKINGORDER_PAGE_SIZE" validate="options">
+                    <option value="letter">MOD_PECKINGORDER_PAGE_LETTER</option>
+                    <option value="a4">MOD_PECKINGORDER_PAGE_A4</option>
+                </field>
+                <field name="page_orient" type="list" default="auto" label="MOD_PECKINGORDER_PAGE_ORIENT" description="MOD_PECKINGORDER_PAGE_ORIENT_DESC" validate="options">
+                    <option value="auto">MOD_PECKINGORDER_PAGE_AUTO</option>
+                    <option value="landscape">MOD_PECKINGORDER_PAGE_LANDSCAPE</option>
+                    <option value="portrait">MOD_PECKINGORDER_PAGE_PORTRAIT</option>
+                </field>
+            </fieldset>
+            <fieldset name="advanced">
+                <field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" class="form-select" validate="moduleLayout" />
+                <field name="moduleclass_sfx" type="textarea" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" rows="3" validate="CssIdentifier" />
+                <field name="cache" type="list" default="0" label="COM_MODULES_FIELD_CACHING_LABEL" filter="integer" validate="options">
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+                <field name="cache_time" type="number" default="900" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" filter="integer" />
+                <field name="cachemode" type="hidden" default="static">
+                    <option value="static"></option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+    <updateservers>
+        <server type="collection" name="Chaotic Fish Design">https://chaoticfishdesign.com/updates/cfd.xml</server>
+    </updateservers>
+</extension>

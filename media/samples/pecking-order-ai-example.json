@@ -1,0 +1,168 @@
+[
+ {
+  "id": "office",
+  "unit": "Office of the Director",
+  "name": "Jordan Avery",
+  "title": "Director",
+  "description": "Sets direction for the office.",
+  "columns": "2"
+ },
+ {
+  "id": "office-dep1",
+  "parent": "office",
+  "deputy_of": "office",
+  "name": "Sam Ortiz",
+  "title": "Deputy Director 01",
+  "roles": [
+   "Operations",
+   "Budget"
+  ]
+ },
+ {
+  "id": "office-dep2",
+  "parent": "office",
+  "deputy_of": "office",
+  "name": "Riley Chen",
+  "title": "Deputy Director 02"
+ },
+ {
+  "id": "office-support",
+  "parent": "office",
+  "deputy_of": "office",
+  "placement": "team",
+  "name": "Support Team",
+  "email": "support@example.org"
+ },
+ {
+  "id": "office-support-1",
+  "parent": "office-support",
+  "deputy_of": "office-support",
+  "name": "Ari Moss",
+  "title": "Support Specialist"
+ },
+ {
+  "id": "office-support-2",
+  "parent": "office-support",
+  "deputy_of": "office-support",
+  "title": "Support Specialist",
+  "vacant": true
+ },
+ {
+  "id": "office-cos",
+  "parent": "office",
+  "placement": "side-left",
+  "name": "Morgan Hale",
+  "title": "Chief of Staff"
+ },
+ {
+  "id": "office-advisor",
+  "parent": "office",
+  "placement": "side-right",
+  "name": "Casey Brooks",
+  "title": "Senior Advisor"
+ },
+ {
+  "id": "office-exec",
+  "parent": "office-advisor",
+  "placement": "side-right",
+  "unit": "Executive Staff",
+  "columns": "1",
+  "group_titles": true
+ },
+ {
+  "id": "office-exec-eo1",
+  "parent": "office-exec",
+  "deputy_of": "office-exec",
+  "name": "Kai Morgan",
+  "title": "Executive Officer"
+ },
+ {
+  "id": "office-exec-eo2",
+  "parent": "office-exec",
+  "deputy_of": "office-exec",
+  "name": "Noor Haddad",
+  "title": "Executive Officer"
+ },
+ {
+  "id": "office-exec-protocol",
+  "parent": "office-exec",
+  "deputy_of": "office-exec",
+  "name": "Eli Grant",
+  "title": "Protocol"
+ },
+ {
+  "id": "office-chief01",
+  "parent": "office",
+  "placement": "assistant-left",
+  "name": "Taylor Reed",
+  "title": "Chief 01"
+ },
+ {
+  "id": "office-td",
+  "parent": "office",
+  "placement": "assistant-right",
+  "name": "Drew Patel",
+  "title": "Technical Director"
+ },
+ {
+  "id": "office-td-security",
+  "parent": "office-td",
+  "placement": "side-right",
+  "name": "Jamie Fox",
+  "title": "Senior Security"
+ },
+ {
+  "id": "grp1",
+  "parent": "office",
+  "unit": "Group 1",
+  "name": "Alex Kim",
+  "title": "Chief",
+  "description": "Platform and infrastructure."
+ },
+ {
+  "id": "grp1-dep",
+  "parent": "grp1",
+  "deputy_of": "grp1",
+  "name": "Lee Wong",
+  "title": "Deputy Chief"
+ },
+ {
+  "id": "grp1-lead-a",
+  "parent": "grp1",
+  "name": "Pat Lopez",
+  "title": "Team Lead",
+  "also_reports_to": [
+   "office-td"
+  ]
+ },
+ {
+  "id": "grp1-lead-b",
+  "parent": "grp1-dep",
+  "title": "Team Lead",
+  "vacant": true
+ },
+ {
+  "id": "grp2",
+  "parent": "office",
+  "unit": "Group 2",
+  "title": "Chief",
+  "vacant": true,
+  "roles": [
+   "Acting: Sam Ortiz"
+  ]
+ },
+ {
+  "id": "grp2-dep",
+  "parent": "grp2",
+  "deputy_of": "grp2",
+  "name": "Robin Diaz",
+  "title": "Deputy Chief"
+ },
+ {
+  "id": "grp3",
+  "parent": "office",
+  "unit": "Group 3",
+  "name": "Quinn Baker",
+  "title": "Chief"
+ }
+]

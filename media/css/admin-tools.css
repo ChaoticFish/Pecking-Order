@@ -1,0 +1,17 @@
+/*! Pecking Order admin tools | Chaotic Fish Design | GPL v2 */
+.pko-tools{display:flex;flex-direction:column;gap:.75rem;max-width:100%}
+.pko-tools-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.pko-tools-hint{color:var(--bs-secondary-color,#6c757d);font-size:.9em;margin:0}
+.pko-tools-result:empty{display:none}
+.pko-tools-result p{margin:0 0 .4rem}
+.pko-tools-result ul{margin:0;padding-left:1.25rem}
+.pko-tools-ok{color:var(--bs-success-text-emphasis,#0a3622)}
+.pko-tools-warn{color:var(--bs-warning-text-emphasis,#664d03);font-weight:600}
+.pko-tools-privacy:empty{display:none}
+.pko-tools-privacy{align-items:center;display:flex;flex-wrap:wrap;gap:.5rem 1rem}
+.pko-tools-privacy p{margin:0}
+.pko-tools-bad{color:var(--bs-danger-text-emphasis,#58151c)}
+.pko-tools-chart .pko-view{height:380px}
+.pko-tools-chart[hidden]{display:none}
+.pko-tools-ref>summary{cursor:pointer;font-weight:600}
+.pko-tools-ref table{margin:.5rem 0 0}
