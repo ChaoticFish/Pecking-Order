@@ -1,0 +1,405 @@
+<!--
+  Pecking Order landing page (Chaotic Fish Design).
+  Paste into the article's HTML (code) view.
+  Needs cf-page.css (the shared page kit), the site-wide .button classes,
+  and Pecking Order 1.0.2 installed.
+
+  Upload to /files/demos/peckingorder/:
+    pecking-order-demo.json      the Reef chart both demos read
+    pecking-order-studio.html    so "Open Studio" works in the browser
+
+  Module 145 (Pecking Order, position none, assigned to this page's menu item, Module Style none):
+    Data:     Data source File path, files/demos/peckingorder/pecking-order-demo.json
+    Privacy:  all four types Public (the Reef isn't real, and the Location filter needs Place)
+    Look:     defaults; Chart height 640px
+    Controls: everything on
+    Export:   Export button for Public; Title on exports "The Reef"; File name the-reef
+  Module 146: a copy of 145 with
+    Look:     Chart direction Left to right; Deputies Shared stem; Chart height 720px; Color key:
+                #7b4fd6 = Engineering
+                #2b8a3e = Operations
+                #e8590c = Reef Care
+                #fcc419 = Snack Logistics
+                #1971c2 = Security
+                #05b5c3 = Leadership
+
+  FLAG: 15-module-pecking-order in the download links is my guess at the jDownloads slug
+        (ID 15 is yours). Copy the real link from jDownloads if the title differs.
+  FLAG: /tools/shrinkray and /tools/chaos-loupe are guesses at those landing pages' addresses.
+  NOTE: Mahi Mahi and Nemo get a New tag until about February 2027, and Starfish Stella
+        shows Starting soon until 20 November 2026. After that they're plain cards; nothing breaks.
+  FLAG: hero icon expected at /images/tools/icons/peckingorder.svg (decorative, alt="": the heading names it).
+        Change the path if the logo lives elsewhere.
+  Training manual is jDownloads item 21 (7-training/21-training-pecking-order-building-a-chart).
+  FLAG: its card shows a PDF badge, like the SquidForm manuals. Change the badge text to DOCX
+        if you upload the Word file instead.
+-->
+<div class="cf-page">
+
+  <!-- Hero -->
+  <section class="cf-hero text-center">
+    <div class="container">
+      <img class="mb-3" src="/images/tools/icons/peckingorder.svg" width="96" height="96" alt="">
+      <p class="cf-eyebrow">Joomla org chart module</p>
+      <h1 class="cf-hero-title" data-wayfin-label="Meet Pecking Order">Meet <span class="cf-brush">Pecking Order.<svg class="cf-squiggle" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2,10 Q30,2 55,10 T105,10 T155,10 T195,10" fill="none" stroke-width="4" stroke-linecap="round"/></svg></span></h1>
+      <p class="cf-lede">Who reports to whom, without the PDF.</p>
+      <p class="cf-copy">Pecking Order turns a spreadsheet into a living org chart. Search for anyone, follow the chain of command, fold away the branches you don't need, and print or export exactly what you see. It keeps private details private, and it never lets a card's text get too faint to read.</p>
+      <div class="buttons--centered">
+        <a class="button button--secondary" href="/downloads/send/4-cfd-developed/15-module-pecking-order">Download free</a>
+        <a class="button" href="#pond">See it peck</a>
+        <a class="button" href="/files/demos/peckingorder/pecking-order-studio.html?src=/files/demos/peckingorder/pecking-order-demo.json" target="_blank" rel="noopener">Open Studio</a>
+      </div>
+      <p class="cf-meta">Joomla 5 &amp; 6 · CSV or JSON · No outside libraries · Studio editor included</p>
+    </div>
+  </section>
+
+  <!-- The pitch -->
+  <section class="cf-section">
+    <div class="container">
+      <div class="row g-4 g-lg-5 align-items-center">
+        <div class="col-lg-5">
+          <p class="cf-eyebrow">Why it exists</p>
+          <h2 class="cf-h2" data-wayfin-label="Why it exists">Org charts are PDFs.</h2>
+        </div>
+        <div class="col-lg-7">
+          <p class="cf-copy cf-copy--left">Somewhere there's a slide with tiny boxes, three versions out of date, that nobody can search. Updating it means finding whoever has the original file. Most org chart plugins swap that for a pile of scripts, a hosted service, or a layout that only works for companies shaped like a perfect pyramid.</p>
+          <p class="cf-copy cf-copy--left">Pecking Order reads one CSV or JSON file, the kind any spreadsheet or HR system can make, and draws it the way real organizations look: offices with deputies, chiefs of staff off to the side, assistants on the line, dotted-line managers, open roles. Update the file and the chart updates. Everything runs on your own site.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live demos -->
+  <section class="cf-section cf-section--tint" id="pond" data-wayfin-separator="Live demos">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="cf-eyebrow">Live, on this page</p>
+        <h2 class="cf-h2" data-wayfin-label="The pond">The pond.</h2>
+        <p class="cf-copy mt-3">Both charts below are the real module reading the same file. Meet the Reef: a small organization of fish with a Big Fish on top, a Kelp Chip Taster position open, and a security team that is friendly, mostly.</p>
+      </div>
+
+      <!-- 1. Top to bottom -->
+      <div class="mb-5" data-wayfin-heed="The classic" data-wayfin-ignore>
+        <div class="row g-4 align-items-start mb-4">
+          <div class="col-lg-5">
+            <p class="cf-label">The classic</p>
+            <h3 class="cf-h3">Top to bottom, deputies inside</h3>
+            <p class="cf-small mb-0">The Big Fish's office card holds two deputies. Their chief of staff and head of comms sit to the sides, and their assistant and advisor sit on the line below. Every team has a lead, a deputy and reports. Click anyone for their details.</p>
+          </div>
+          <div class="col-lg-7">
+            <div class="bg-white border rounded-3 p-4">
+              <p class="cf-label">Try it</p>
+              <ol class="mb-0">
+                <li>Type <strong>chief</strong> in the search box, then press <strong>Enter</strong> to swim between matches.</li>
+                <li>Click <strong>Octavia Pus</strong>, then <strong>Focus on this branch</strong>. The trail at the top takes you back.</li>
+                <li>Fold a team with <strong>−</strong>, open it again with <strong>+</strong>.</li>
+                <li>Pick <strong>Remote</strong> under All locations, or press <strong>Open roles</strong>.</li>
+                <li><strong>Export</strong> it as a PDF, or press <strong>😐 Sad mode</strong> if sparkles aren't your thing.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        {loadmoduleid 145}
+      </div>
+
+      <!-- 2. Left to right -->
+      <div class="mb-5" data-wayfin-heed="Sideways" data-wayfin-ignore>
+        <div class="row g-4 align-items-start mb-4">
+          <div class="col-lg-5">
+            <p class="cf-label">Sideways</p>
+            <h3 class="cf-h3">Left to right, deputies on the stem</h3>
+            <p class="cf-small mb-0">The same file with three settings changed: the chart grows to the right, deputies get their own cards on the line under their lead, and a color key names the team colors. Long teams run down the page instead of across it.</p>
+          </div>
+          <div class="col-lg-7">
+            <div class="bg-white border rounded-3 p-4">
+              <p class="cf-label">Try it</p>
+              <ol class="mb-0">
+                <li>Click <strong>Engineering</strong> in the color key to light up just that team.</li>
+                <li>Hover <strong>Barracuda Bob</strong> to see his dotted line to Hammer Head.</li>
+                <li>Tab into the chart and use the arrow keys: → goes to the first report, ← to the boss.</li>
+                <li>Narrow your window, or press <strong>List view</strong>, for the indented list.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        {loadmoduleid 146}
+      </div>
+
+      <p class="cf-small text-center mb-0">Psst: there's a code. ↑ ↑ ↓ ↓ ← → ← → B A. Then try it in Sad mode.</p>
+    </div>
+  </section>
+
+  <!-- Studio -->
+  <section class="cf-section">
+    <div class="container">
+      <div class="row g-4 g-lg-5 align-items-center">
+        <div class="col-lg-5">
+          <p class="cf-eyebrow">The companion</p>
+          <h2 class="cf-h2" data-wayfin-label="Pecking Order Studio">Pecking Order Studio.</h2>
+          <div class="buttons--centered justify-content-lg-start mt-4">
+            <a class="button" href="/files/demos/peckingorder/pecking-order-studio.html?src=/files/demos/peckingorder/pecking-order-demo.json" target="_blank" rel="noopener">Open Studio</a>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <p class="cf-copy cf-copy--left">The chart file has to come from somewhere, so Pecking Order comes with Studio: an editor that's one HTML file running in your browser, online or off. Click a card to edit it, drag someone onto their new boss, and save. In Edge and Chrome it saves straight back to the file you opened.</p>
+          <ul class="cf-copy cf-copy--left">
+            <li><strong>Straight from HR:</strong> open a CSV from your HR system and Studio matches its columns for you, managers by ID or by name. Salary and anything else you don't match stays behind.</li>
+            <li><strong>Many at once:</strong> Ctrl-click a dozen cards and change their department, location or colors together.</li>
+            <li><strong>What changed:</strong> compare this month's chart with last month's: added, moved, changed and gone, outlined on the chart.</li>
+            <li><strong>From a PDF:</strong> a ready-made prompt for an AI tool turns an old PDF org chart into a Pecking Order file.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="cf-section cf-section--tint" data-wayfin-separator="What's in the box">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="cf-eyebrow">What's in the box</p>
+        <h2 class="cf-h2" data-wayfin-label="Features">Every org chart has a pecking order.</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="cf-card">
+            <p class="cf-label">Real shapes</p>
+            <h3>Drawn like your org</h3>
+            <p>Offices with deputies inside, beside or below, and teams with their own heading and email inside a card. Staff to either side, assistants on the line, dotted-line managers, open roles. Top to bottom or left to right.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="cf-card">
+            <p class="cf-label">Privacy</p>
+            <h3>Details by access level</h3>
+            <p>Choose who sees contact details, offices, photos and the rest. Hidden fields are removed before the page is sent, and one click locks the file's folder.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="cf-card">
+            <p class="cf-label">Finding people</p>
+            <h3>Search, filter, focus</h3>
+            <p>Search with jump-to, filters by department, location and role, a color key, branch focus with a trail back, and links straight to a person.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="cf-card">
+            <p class="cf-label">Export</p>
+            <h3>Paper, if you must</h3>
+            <p>SVG, PNG or a sharp, searchable PDF, made in the browser. Printing the page fits the whole chart on one sheet, with the file's date on it.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="cf-card">
+            <p class="cf-label">Readable</p>
+            <h3>Contrast, handled</h3>
+            <p>Give a card any background color and the text color picks itself to pass WCAG AA. Keyboard navigation throughout, and a plain list without JavaScript.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="cf-card">
+            <p class="cf-label">Up to date</p>
+            <h3>New faces, open roles</h3>
+            <p>New and Starting soon tags from a start date, Help wanted on open roles with a link to the posting, and the date the file last changed.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="cf-card">
+            <p class="cf-label">Photos</p>
+            <h3>Plays well with others</h3>
+            <p>Uses <a href="/tools/shrinkray">ShrinkRay</a>'s smaller copies of photos when it's installed, and opens them in <a href="/tools/chaos-loupe">Chaos Loupe</a>. Initials otherwise.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="cf-card">
+            <p class="cf-label">Your words</p>
+            <h3>Translate anything</h3>
+            <p>Every label on the chart, down to the Sad mode jokes, can be translated or reworded in Joomla's language overrides. Add your own CSS classes to any card.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two moods -->
+  <section class="cf-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="cf-eyebrow">Two moods</p>
+        <h2 class="cf-h2" data-wayfin-label="Sparkle or Sad">Sparkle, or Sad.</h2>
+      </div>
+      <div class="row g-4 g-lg-5">
+        <div class="col-lg-6">
+          <h3 class="cf-h3">Sparkle (the default)</h3>
+          <p class="cf-small">Cards swim in from the middle as a school. Search hits ping like sonar. Bubbles rise up the chain of command when you click someone. Folding a branch reels it in, and opening it casts it back out. Deeper teams sit in deeper water, and a rooster keeps an eye on the top of the pecking order. Boss not a fan of the rooster? Each effect has its own switch.</p>
+        </div>
+        <div class="col-lg-6">
+          <h3 class="cf-h3">Sad mode</h3>
+          <p class="cf-small">One button and it all goes beige. No motion, no rooster, and a gentle reminder of where you are: <em>"Welcome to the beige zone. Population: you."</em> Visitors who've asked their device for less motion get the calm without the teasing. The choice is remembered.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Under the hood -->
+  <section class="cf-section cf-section--ink">
+    <div class="container">
+      <div class="row g-4 g-lg-5">
+        <div class="col-lg-4">
+          <p class="cf-eyebrow">For the technical crowd</p>
+          <h2 class="cf-h2">Under the hood.</h2>
+        </div>
+        <div class="col-lg-8">
+          <dl class="cf-specs">
+            <div><dt>Works with</dt><dd>Joomla 5 and Joomla 6, PHP 8.2 or later, any template. It uses the Bootstrap classes Joomla templates already load. New versions arrive through Joomla's own Update screen.</dd></div>
+            <div><dt>Data</dt><dd>One CSV or JSON file from the Media Manager or any folder on your site (Browse opens the full Media Manager), flat or nested. Read once and cached until the file changes. Up to 5,000 people.</dd></div>
+            <div><dt>Weight</dt><dd>One deferred script, about 72 KB (27 KB gzipped), and one stylesheet, about 6 KB gzipped. No outside libraries, fonts or services.</dd></div>
+            <div><dt>Privacy</dt><dd>Fields are shown by Joomla access level and stripped on the server. Columns the chart doesn't use are never sent. No cookies or tracking; Sparkle or Sad is remembered in the visitor's own browser.</dd></div>
+            <div><dt>Accessibility</dt><dd>WCAG AA text contrast on any card color, real buttons and links, visible focus, arrow-key navigation, reduced motion honored, and a nested list without JavaScript.</dd></div>
+            <div><dt>Exports</dt><dd>SVG, PNG and vector PDF built in the browser, Letter or A4, with a title and the file's date. Only what that visitor can see.</dd></div>
+            <div><dt>Columns</dt><dd><code class="text-white">id, parent, name, title</code> to start. Then deputies, placement, roles, contact details, photo, colors, start date, job link, CSS class, and more, all optional.</dd></div>
+            <div><dt>Studio</dt><dd>One HTML file, no install, works offline. Opens and saves CSV or JSON, and is included in the module package.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Training manual -->
+  <section class="cf-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="cf-eyebrow">Training</p>
+        <h2 class="cf-h2" data-wayfin-label="Training manual">One manual, for whoever builds the chart.</h2>
+        <p class="cf-copy mt-3">A plain-language guide for Pecking Order 1.0.2, with screenshots from the Reef, a contents page, a go-live checklist and an FAQ.</p>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-6 col-lg-4">
+          <div class="cf-card h-100 d-flex flex-column">
+            <svg class="mb-3 align-self-center" width="48" height="60" viewBox="0 0 48 60" aria-hidden="true" focusable="false"><path d="M4 2h28l14 14v40a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#fff" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M32 2v14h14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><rect x="0" y="30" width="36" height="16" rx="2" fill="#C52827"/><text x="18" y="42.5" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" text-anchor="middle">PDF</text></svg>
+            <p class="cf-label">For chart builders</p>
+            <h3>Building a Chart</h3>
+            <p>Making the data file, working in Studio, opening an HR export or a PDF with AI, putting the chart on the site, who sees what, the Look tab, and keeping it up to date.</p>
+            <a class="button w-100 mt-auto text-center" href="/downloads/send/7-training/21-training-pecking-order-building-a-chart">Download<span class="visually-hidden"> Building a Chart (PDF)</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="cf-cta">
+    <div class="container">
+      <h2 class="cf-h2" data-wayfin-label="Get Pecking Order">Ready to <span class="cf-brush">peck?<svg class="cf-squiggle" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2,10 Q30,2 55,10 T105,10 T155,10 T195,10" fill="none" stroke-width="4" stroke-linecap="round"/></svg></span></h2>
+      <p class="cf-lede">Want Pecking Order on your site? Take it, or let's talk.</p>
+      <div class="buttons--centered">
+        <a class="button button--secondary" href="/downloads/send/4-cfd-developed/15-module-pecking-order">Download Pecking Order</a>
+        <a class="button" href="mailto:weirdideas@chaoticfishdesign.com">Start a conversation</a>
+      </div>
+      {jd_file file==15}
+      {jd_file file==21}
+    </div>
+  </section>
+
+  <!-- Changelog -->
+  <section class="cf-section">
+    <div class="container">
+      <p class="cf-eyebrow">Pecking Order</p>
+      <h2 class="cf-h2 mb-4">Changelog.</h2>
+
+      <!-- Current release -->
+      <article class="cf-log cf-log--current">
+        <header class="cf-log-head">
+          <h3 class="cf-h3">1.0.2</h3>
+          <span class="cf-label">Stable · November 2026</span>
+        </header>
+        <p>Teams, and more say in how a card is laid out, from building a real chart.</p>
+        <ul>
+          <li><strong>Teams inside a card:</strong> a Support team under the deputies, with its own heading and a clickable email.</li>
+          <li><strong>People per row:</strong> one column, pairs, or up to six side by side inside any card.</li>
+          <li><strong>Shared titles:</strong> two Executive Officers show the title once, with both names under it.</li>
+          <li><strong>Stack on request:</strong> four groups under one leader can sit 2 × 2 on the trunk.</li>
+          <li>A box that's just a heading (Executive Staff) no longer shows an empty person, and a staff box beside a staff box lost its stray lines.</li>
+          <li>Studio gets <strong>+ Team</strong>, <strong>+ Member</strong> and an <em>Inside the card</em> section; the AI prompt knows about teams.</li>
+        </ul>
+      </article>
+
+      <h3 class="cf-h3 mt-5 mb-3">Earlier releases</h3>
+
+      <details class="cf-log">
+        <summary class="cf-log-head"><span class="cf-h3">1.0.1</span><span class="cf-label">Automatic updates</span></summary>
+        <ul>
+          <li>Updates now show in Joomla's Update screen. Install 1.0.1 once by hand to switch this on.</li>
+          <li>Sparkle extras: turn single effects off (the rooster, say) and keep the rest.</li>
+          <li>A Browse button next to File path opens the full Media Manager, not just images.</li>
+          <li>A fresh AI prompt and example file for turning a PDF org chart into a Pecking Order file, and the prompt box in Studio's Help tab shows properly again.</li>
+          <li>The installer checks for PHP 8.2 and Joomla 5 and stops with a plain message if they're missing.</li>
+        </ul>
+      </details>
+
+      <details class="cf-log">
+        <summary class="cf-log-head"><span class="cf-h3">1.0.0</span><span class="cf-label">November 2026</span></summary>
+        <ul>
+          <li>Org charts from a CSV or JSON file, with deputies three ways, staff, assistants, dotted lines and open roles.</li>
+          <li>Search, filters, a color key, branch focus, deep links, top to bottom or left to right, and a list on phones.</li>
+          <li>Privacy by access level, export to SVG, PNG and PDF, and Pecking Order Studio.</li>
+          <li>Accessibility fixes from the final test pass: readable initials and unit headings on light accents, toolbar buttons on tinted sections, and stacked teams announced as list items.</li>
+          <li>The site now loads a minified script (about a third smaller).</li>
+        </ul>
+      </details>
+
+      <details class="cf-log">
+        <summary class="cf-log-head"><span class="cf-h3">0.7.0</span><span class="cf-label">November 2026</span></summary>
+        <ul>
+          <li><strong>Studio:</strong> open HR exports with column matching, bulk edit, Duplicate, Sort A–Z, and a Compare tab.</li>
+          <li>Starting soon tags, a <code>class</code> column, an Updated line, a List view button, and links straight to a branch.</li>
+          <li>Fixed: lines in stacked rows now reach every card; printing leaves out the filter bar.</li>
+        </ul>
+      </details>
+
+      <details class="cf-log">
+        <summary class="cf-log-head"><span class="cf-h3">0.6.0</span><span class="cf-label">November 2026</span></summary>
+        <ul>
+          <li>The sparkle pack: school formation, sonar, bubble trail, reel in and cast out, depth shading, the rooster, and a secret code.</li>
+          <li>New tags from a start date, and Help wanted tags with a job link.</li>
+        </ul>
+      </details>
+
+      <details class="cf-log">
+        <summary class="cf-log-head"><span class="cf-h3">0.5.0</span><span class="cf-label">November 2026</span></summary>
+        <ul>
+          <li>Branch focus with a trail, filters and a color key, deputies inside, beside or on a shared stem, and a left-to-right layout.</li>
+        </ul>
+      </details>
+
+      <details class="cf-log">
+        <summary class="cf-log-head"><span class="cf-h3">0.4.0</span><span class="cf-label">November 2026</span></summary>
+        <ul>
+          <li>Export to SVG, PNG and vector PDF, and printing that fits the whole chart on one page.</li>
+        </ul>
+      </details>
+
+      <details class="cf-log">
+        <summary class="cf-log-head"><span class="cf-h3">0.3.0</span><span class="cf-label">November 2026</span></summary>
+        <ul>
+          <li>Privacy by field type, Lock this folder, translatable text, ShrinkRay photos and Chaos Loupe.</li>
+        </ul>
+      </details>
+
+      <details class="cf-log">
+        <summary class="cf-log-head"><span class="cf-h3">0.2.0</span><span class="cf-label">November 2026</span></summary>
+        <ul>
+          <li>Left and right placements, levels open at start, stacked rows, mobile layout choices, pinch zoom and arrow keys. 0.2.1 added see-through and template colors.</li>
+        </ul>
+      </details>
+
+      <details class="cf-log">
+        <summary class="cf-log-head"><span class="cf-h3">0.1.0</span><span class="cf-label">November 2026</span></summary>
+        <ul>
+          <li>First testing release: the chart, Sparkle and Sad modes, Data tools in the module, and Pecking Order Studio. 0.1.1 to 0.1.5 added dotted lines, chart backgrounds, Copy link and card colors.</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+</div>

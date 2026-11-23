@@ -1,0 +1,159 @@
+[
+ {
+  "id": "dir",
+  "unit": "Office of the Director",
+  "name": "Pat Lead",
+  "title": "Director",
+  "columns": "2",
+  "accent": "#7b4fd6"
+ },
+ {
+  "id": "dd1",
+  "parent": "dir",
+  "deputy_of": "dir",
+  "name": "Sam One",
+  "title": "Deputy Director"
+ },
+ {
+  "id": "dd2",
+  "parent": "dir",
+  "deputy_of": "dir",
+  "name": "Alex Two",
+  "title": "Deputy Director"
+ },
+ {
+  "id": "support",
+  "parent": "dir",
+  "deputy_of": "dir",
+  "placement": "team",
+  "name": "Support team",
+  "email": "support@example.org",
+  "description": "Front desk, travel and IT tickets."
+ },
+ {
+  "id": "sup1",
+  "parent": "support",
+  "deputy_of": "support",
+  "name": "Jo Help",
+  "title": "Support Specialist"
+ },
+ {
+  "id": "sup2",
+  "parent": "support",
+  "deputy_of": "support",
+  "name": "Lee Help",
+  "title": "Support Specialist"
+ },
+ {
+  "id": "cos",
+  "parent": "dir",
+  "placement": "side-right",
+  "name": "Chris Staff",
+  "title": "Chief of Staff"
+ },
+ {
+  "id": "exec",
+  "parent": "cos",
+  "placement": "side-right",
+  "unit": "Executive Staff",
+  "columns": "1",
+  "group_titles": "yes"
+ },
+ {
+  "id": "ex0",
+  "parent": "exec",
+  "deputy_of": "exec",
+  "name": "Ana One",
+  "title": "Executive Officer"
+ },
+ {
+  "id": "ex1",
+  "parent": "exec",
+  "deputy_of": "exec",
+  "name": "Ben Two",
+  "title": "Executive Officer"
+ },
+ {
+  "id": "ex2",
+  "parent": "exec",
+  "deputy_of": "exec",
+  "name": "Cy Three",
+  "title": "Senior Advisor"
+ },
+ {
+  "id": "ex3",
+  "parent": "exec",
+  "deputy_of": "exec",
+  "name": "Dee Four",
+  "title": "Senior Advisor"
+ },
+ {
+  "id": "ex4",
+  "parent": "exec",
+  "deputy_of": "exec",
+  "name": "Eli Five",
+  "title": "Protocol"
+ },
+ {
+  "id": "ex5",
+  "parent": "exec",
+  "deputy_of": "exec",
+  "name": "Fay Six",
+  "title": "Legislative Affairs"
+ },
+ {
+  "id": "lead",
+  "parent": "dir",
+  "name": "Morgan Ops",
+  "title": "Operations Lead",
+  "stack": "yes"
+ },
+ {
+  "id": "g0",
+  "parent": "lead",
+  "unit": "Group A",
+  "name": "Chief 1",
+  "title": "Group Chief"
+ },
+ {
+  "id": "g0-team",
+  "parent": "g0",
+  "deputy_of": "g0",
+  "placement": "team",
+  "name": "Analysts"
+ },
+ {
+  "id": "g0-t1",
+  "parent": "g0-team",
+  "deputy_of": "g0-team",
+  "name": "Rae Data",
+  "title": "Analyst"
+ },
+ {
+  "id": "g1",
+  "parent": "lead",
+  "unit": "Group B",
+  "name": "Chief 2",
+  "title": "Group Chief"
+ },
+ {
+  "id": "g2",
+  "parent": "lead",
+  "unit": "Group C",
+  "name": "Chief 3",
+  "title": "Group Chief"
+ },
+ {
+  "id": "g3",
+  "parent": "lead",
+  "unit": "Group D",
+  "name": "Chief 4",
+  "title": "Group Chief"
+ },
+ {
+  "id": "g0a",
+  "parent": "g0",
+  "name": "Pip Analyst",
+  "title": "Analyst"
+ }
+]

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pecking Order Studio</title>
+<style>
+/*@css*/
+</style>
+</head>
+<body class="pks">
+<header class="pks-head">
+  <div class="pks-brand">
+    <h1 class="pks-title">🐟 Pecking Order Studio</h1>
+    <span class="pks-file" id="pks-file">untitled.json</span>
+    <span class="pks-dirty" id="pks-dirty" hidden>● unsaved</span>
+  </div>
+  <div class="pks-tools" role="toolbar" aria-label="File">
+    <button class="btn" type="button" id="pks-new">New</button>
+    <button class="btn" type="button" id="pks-open" title="Ctrl+O">Open…</button>
+    <button class="btn btn-primary" type="button" id="pks-save" title="Ctrl+S">Save</button>
+    <button class="btn" type="button" id="pks-savejson" title="Save a copy as JSON">Save as JSON</button>
+    <button class="btn" type="button" id="pks-savecsv" title="Save a copy as CSV">Save as CSV</button>
+    <span class="pks-sep" aria-hidden="true"></span>
+    <button class="btn" type="button" id="pks-undo" title="Ctrl+Z">Undo</button>
+    <button class="btn" type="button" id="pks-redo" title="Ctrl+Shift+Z">Redo</button>
+    <span class="pks-sep" aria-hidden="true"></span>
+    <button class="btn" type="button" id="pks-sample-btn">Load sample</button>
+  </div>
+</header>
+<div class="pks-banner" id="pks-banner" role="region" aria-label="Saved draft" hidden>
+  <span id="pks-banner-text"></span>
+  <button class="btn" type="button" id="pks-banner-dismiss">Keep going</button>
+  <button class="btn" type="button" id="pks-banner-sample">Start over with the sample</button>
+</div>
+
+<main class="pks-main">
+  <section class="pks-chart" aria-label="Chart">
+    <div class="pko is-sparkle" id="pks-chart" data-list-at="560">
+      <div class="pko-bar">
+        <input class="form-control form-control-sm pko-search" type="search" placeholder="Find someone…" aria-label="Find someone in the chart">
+        <button class="btn btn-sm btn-outline-secondary pko-clear" type="button" aria-label="Clear search" hidden>×</button>
+        <span class="pko-count" aria-live="polite"></span>
+        <div class="pko-zoom">
+          <button class="btn btn-sm btn-outline-secondary" type="button" data-act="out" aria-label="Zoom out">−</button>
+          <button class="btn btn-sm btn-outline-secondary" type="button" data-act="fit">Fit</button>
+          <button class="btn btn-sm btn-outline-secondary" type="button" data-act="in" aria-label="Zoom in">+</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary pko-mode" type="button" aria-pressed="false"></button>
+      </div>
+      <p class="pko-sadnote" hidden></p>
+      <ul class="pko-errs" hidden></ul>
+      <div class="pko-view"><div class="pko-stage"><ul class="pko-tree"></ul></div></div>
+      <p class="pko-help">Drag empty space to move around · Drag a person onto someone else to change who they report to · Ctrl/⌘ + scroll to zoom</p>
+    </div>
+  </section>
+
+  <aside class="pks-side" aria-label="Editor">
+    <div class="pks-tabs" role="tablist">
+      <button class="pks-tab" type="button" role="tab" data-tab="edit" aria-selected="true">Edit</button>
+      <button class="pks-tab" type="button" role="tab" data-tab="problems" aria-selected="false" tabindex="-1">Problems<span class="pks-badge" id="pks-badge" hidden></span></button>
+      <button class="pks-tab" type="button" role="tab" data-tab="compare" aria-selected="false" tabindex="-1">Compare</button>
+      <button class="pks-tab" type="button" role="tab" data-tab="raw" aria-selected="false" tabindex="-1">Raw</button>
+      <button class="pks-tab" type="button" role="tab" data-tab="look" aria-selected="false" tabindex="-1">Look</button>
+      <button class="pks-tab" type="button" role="tab" data-tab="help" aria-selected="false" tabindex="-1">Help</button>
+    </div>
+
+    <div class="pks-panel" data-panel="edit" role="tabpanel" id="pks-edit"></div>
+
+    <div class="pks-panel" data-panel="problems" role="tabpanel" hidden>
+      <p class="pks-hint">The same checks the Joomla module runs. Click one to jump to that card.</p>
+      <ul class="pks-probs" id="pks-probs"></ul>
+    </div>
+
+    <div class="pks-panel" data-panel="compare" role="tabpanel" hidden>
+      <p class="pks-hint">See what changed since an older copy of this chart: who was added, removed, moved to a new boss, or had details changed. Changes are outlined on the chart: <span class="pks-key is-add">added</span> <span class="pks-key is-move">moved</span> <span class="pks-key is-chg">changed</span>. People are matched by ID.</p>
+      <div class="pks-acts">
+        <button class="btn btn-primary" type="button" id="pks-cmp-open">Compare with another file…</button>
+        <button class="btn" type="button" id="pks-cmp-stop" hidden>Stop comparing</button>
+        <input type="file" id="pks-cmp-input" accept=".json,.csv,application/json,text/csv" hidden>
+      </div>
+      <div id="pks-cmp-out" aria-live="polite"></div>
+    </div>
+
+    <div class="pks-panel" data-panel="raw" role="tabpanel" hidden>
+      <div class="pks-row">
+        <label for="pks-rawfmt">Format</label>
+        <select id="pks-rawfmt"><option value="json">JSON</option><option value="csv">CSV</option></select>
+        <button class="btn" type="button" id="pks-rawreload">Reload from chart</button>
+        <button class="btn" type="button" id="pks-rawapply">Apply to chart</button>
+      </div>
+      <p class="pks-err" id="pks-rawerr" hidden></p>
+      <textarea class="pks-raw" id="pks-raw" spellcheck="false" aria-label="Raw data"></textarea>
+      <p class="pks-hint">Edit the data directly, then Apply. Apply can be undone.</p>
+    </div>
+
+    <div class="pks-panel" data-panel="look" role="tabpanel" id="pks-look" hidden>
+      <p class="pks-hint">Try the look here, then copy the matching settings into the module.</p>
+      <div class="pks-f"><label for="pks-look-startDepth">Levels open at start</label>
+        <div class="pks-range"><input type="range" id="pks-look-startDepth" min="0" max="6" step="1"><output id="pks-look-startDepth-out"></output></div>
+        <p class="pks-hint">How many levels show when the page loads; deeper branches start folded. All shows everything.</p></div>
+      <div class="pks-f"><label for="pks-look-wrapAt">Stack rows wider than</label>
+        <div class="pks-range"><input type="range" id="pks-look-wrapAt" min="0" max="16" step="1"><output id="pks-look-wrapAt-out"></output></div>
+        <p class="pks-hint">A boss with more reports than this shows them stacked down the trunk, two per row. 0 never stacks.</p></div>
+      <div class="pks-f"><label for="pks-look-lines">Line style</label>
+        <select id="pks-look-lines"><option value="solid">Solid</option><option value="dashed">Dashed</option><option value="dotted">Dotted</option></select></div>
+      <div class="pks-f"><label for="pks-look-lineColor">Line color</label>
+        <div class="pks-color"><input type="color" id="pks-look-lineColor"></div></div>
+      <div class="pks-f"><label for="pks-look-cardw">Card width</label>
+        <div class="pks-range"><input type="range" id="pks-look-cardw" min="200" max="360" step="10"><output id="pks-look-cardw-out"></output></div></div>
+      <div class="pks-f"><label for="pks-look-gap">Spacing</label>
+        <div class="pks-range"><input type="range" id="pks-look-gap" min="16" max="48" step="2"><output id="pks-look-gap-out"></output></div></div>
+      <div class="pks-f"><label for="pks-look-accent">Accent color</label>
+        <div class="pks-color"><input type="color" id="pks-look-accent"></div>
+        <p class="pks-hint">Used by any card without its own accent.</p></div>
+      <div class="pks-f"><label for="pks-look-cardBg">Card background</label>
+        <div class="pks-color"><input type="color" id="pks-look-cardBgPick" aria-label="Pick card background"><input type="text" id="pks-look-cardBg" placeholder="Default" title="Hex, rgb()/rgba(), hsl(), a color name, or var(--name)"><button class="btn" type="button" data-lookclear="cardBg">Clear</button></div></div>
+      <div class="pks-f"><label for="pks-look-cardColor">Card text color</label>
+        <div class="pks-color"><input type="color" id="pks-look-cardColorPick" aria-label="Pick card text color"><input type="text" id="pks-look-cardColor" placeholder="Automatic" title="Hex, rgb()/rgba(), hsl(), a color name, or var(--name)"><button class="btn" type="button" data-lookclear="cardColor">Clear</button></div>
+        <p class="pks-hint pks-contrast" id="pks-look-contrast" aria-live="polite"></p></div>
+      <div class="pks-f"><label for="pks-look-bg">Chart background</label>
+        <select id="pks-look-bg"><option value="default">Default (soft panel)</option><option value="transparent">Transparent</option><option value="custom">Custom color</option></select>
+        <div class="pks-color" id="pks-look-bgwrap"><input type="color" id="pks-look-bgColor" aria-label="Background color"></div></div>
+      <div class="pks-f"><label for="pks-look-dotted">Dotted-line managers</label>
+        <select id="pks-look-dotted"><option value="hover">On hover</option><option value="always">Always</option><option value="off">Off (details panel only)</option></select></div>
+      <div class="pks-f"><label for="pks-look-mode">Start in</label>
+        <select id="pks-look-mode"><option value="sparkle">Sparkle</option><option value="sad">Sad mode</option></select></div>
+      <div class="pks-f is-check"><input type="checkbox" id="pks-look-unitDesc"><label for="pks-look-unitDesc">Show unit descriptions on cards</label></div>
+      <div class="pks-f"><label for="pks-look-dir">Chart direction</label>
+        <select id="pks-look-dir"><option value="down">Top to bottom</option><option value="right">Left to right</option></select>
+        <p class="pks-hint">Left to right: staff above and below their boss, assistants on the line, teams in a column. Stacking doesn't apply.</p></div>
+      <div class="pks-f"><label for="pks-look-deputyStyle">Deputies</label>
+        <select id="pks-look-deputyStyle"><option value="inside">Inside the leader's card</option><option value="beside">Beside the leader</option><option value="stem">Shared stem (under the leader)</option></select>
+        <p class="pks-hint">A leader's own setting (Edit tab) wins.</p></div>
+      <div class="pks-f"><label for="pks-look-legend">Color key</label>
+        <textarea id="pks-look-legend" rows="3" placeholder="#7b4fd6 = Engineering"></textarea>
+        <p class="pks-hint">One per line: color = label. Clicking a key color filters to it.</p></div>
+      <div class="pks-f"><label for="pks-look-newDays">New-hire tag for (days)</label>
+        <input type="number" id="pks-look-newDays" min="0" max="730" step="1">
+        <p class="pks-hint">Anyone whose start date is this recent gets a New tag. 0 turns it off.</p></div>
+      <div class="pks-f is-check"><input type="checkbox" id="pks-look-filters"><label for="pks-look-filters">Filters (department, location, role, open roles)</label></div>
+      <fieldset class="pks-fx">
+        <legend>Sparkle extras</legend>
+        <p class="pks-hint">Turn single effects off and keep Sparkle mode. Sad mode and reduced motion still turn them all off.</p>
+        <div class="pks-f is-check"><input type="checkbox" id="pks-look-fxSchool"><label for="pks-look-fxSchool">School formation intro</label></div>
+        <div class="pks-f is-check"><input type="checkbox" id="pks-look-fxSwim"><label for="pks-look-fxSwim">Fish on search jumps</label></div>
+        <div class="pks-f is-check"><input type="checkbox" id="pks-look-fxPing"><label for="pks-look-fxPing">Sonar ping</label></div>
+        <div class="pks-f is-check"><input type="checkbox" id="pks-look-fxTrail"><label for="pks-look-fxTrail">Bubble trail</label></div>
+        <div class="pks-f is-check"><input type="checkbox" id="pks-look-fxReel"><label for="pks-look-fxReel">Reel in / cast out</label></div>
+        <div class="pks-f is-check"><input type="checkbox" id="pks-look-fxDepth"><label for="pks-look-fxDepth">Depth shading</label></div>
+        <div class="pks-f is-check"><input type="checkbox" id="pks-look-fxRooster"><label for="pks-look-fxRooster">Rooster</label></div>
+        <div class="pks-f is-check"><input type="checkbox" id="pks-look-fxKonami"><label for="pks-look-fxKonami">Konami fish</label></div>
+        <div class="pks-f is-check"><input type="checkbox" id="pks-look-fxTags"><label for="pks-look-fxTags">Tag shine and bob</label></div>
+      </fieldset>
+      <h2 class="pks-h">Export</h2>
+      <p class="pks-hint">For the Export button above the chart (and on the module's Export tab).</p>
+      <div class="pks-f"><label for="pks-look-expTitle">Title on exports</label>
+        <input type="text" id="pks-look-expTitle" placeholder="No title"></div>
+      <div class="pks-f is-check"><input type="checkbox" id="pks-look-expDate"><label for="pks-look-expDate">"As of" date on exports</label></div>
+      <div class="pks-f"><label for="pks-look-expName">File name</label>
+        <input type="text" id="pks-look-expName" placeholder="org-chart"></div>
+      <div class="pks-f"><label for="pks-look-page">Paper (PDF and Print)</label>
+        <select id="pks-look-page"><option value="letter">US Letter</option><option value="a4">A4</option></select></div>
+      <div class="pks-f"><label for="pks-look-orient">Orientation</label>
+        <select id="pks-look-orient"><option value="auto">Automatic</option><option value="landscape">Landscape</option><option value="portrait">Portrait</option></select>
+        <p class="pks-hint">Automatic picks landscape for a wide chart. The chart is scaled to fit one page.</p></div>
+      <div class="pks-f"><label>Matching module settings</label><pre class="pks-out" id="pks-look-out" tabindex="0" aria-label="Matching module settings"></pre></div>
+      <div class="pks-row"><button class="btn" type="button" id="pks-look-reset">Reset to defaults</button></div>
+    </div>
+
+    <div class="pks-panel pks-help" data-panel="help" role="tabpanel" hidden>
+      <h2>Saving</h2>
+      <p id="pks-savenote"></p>
+      <p>Your work is also kept as a draft in this browser, so closing the tab doesn't lose it. The draft isn't a file: use Save for that.</p>
+      <h2>Exporting</h2>
+      <p><b>Export</b> (top right) saves the chart as an SVG drawing, a PNG image or a one-page PDF, or prints it. <i>As shown</i> keeps folded branches folded; <i>Everything</i> opens them all for the file. Title, date, file name and paper are on the Look tab. PDF text is Helvetica; a name in another script (Chinese, Arabic, Cyrillic…) makes the PDF a picture instead.</p>
+      <h2>Opening an HR export</h2>
+      <p>Open a CSV from your HR system and Studio asks which of its columns hold the ID, manager, name, title and so on (it guesses most). The manager column can hold IDs or names ("Hayes, Marlin" works); with no ID column, IDs are made from names. Start dates are turned into year-month-day. Columns you don't match (salary, say) are left out. The result is a new <code>…-pecking-order.json</code>; your HR file isn't changed. Studio remembers your choices for files with the same columns.</p>
+      <h2>Editing many at once</h2>
+      <p><b>Ctrl/⌘ + click</b> or <b>Shift + click</b> cards to pick several, or use <b>Select branch</b> on someone. Then fill in only what should change (department, location, colors, CSS class…) or move them all under a new boss, and Apply. <b>Duplicate</b> copies a card; <b>Sort A–Z</b> orders someone's reports by name (staff and assistants sort among themselves). Undo works for all of it.</p>
+      <h2>Comparing two files</h2>
+      <p>The <b>Compare</b> tab checks the open chart against an older copy: added, removed, moved (new boss or placement) and changed details, outlined on the chart. People are matched by ID, so keep IDs stable between versions.</p>
+      <h2>Moving people</h2>
+      <ul>
+        <li>Drag a person onto someone else to make them report to that person. Dropping on a deputy puts them under the deputy's leader.</li>
+        <li><strong>Placement</strong> decides how a card hangs off its boss: below (normal), beside (side, like a Chief of Staff), or on the trunk (assistant).</li>
+        <li>Deputies sit inside their leader's card. Set <em>Deputy inside the card of</em> on the deputy.</li>
+        <li><strong>← Earlier / Later →</strong> change left-to-right order among siblings.</li>
+        <li>On side and assistant cards, <strong>← Left / Right →</strong> choose which side they sit on (placement <code>side-left</code>, <code>assistant-right</code>, …).</li>
+        <li>In the chart, the arrow keys move between people: ↑ boss, ↓ first report, ← → neighbors, Home the top.</li>
+        <li><strong>Also reports to</strong> draws a dotted line to each listed manager (hover or select a person to see theirs; the Look tab can show them always).</li>
+      </ul>
+      <h2>Keys</h2>
+      <ul>
+        <li><code>Ctrl/⌘ S</code> save · <code>Ctrl/⌘ Shift S</code> save as · <code>Ctrl/⌘ O</code> open</li>
+        <li><code>Ctrl/⌘ Z</code> undo · <code>Ctrl/⌘ Shift Z</code> or <code>Ctrl/⌘ Y</code> redo</li>
+        <li>In the search box: <code>Enter</code> jumps to the next match, <code>Esc</code> clears.</li>
+      </ul>
+      <h2>Columns</h2>
+      <table class="pks-ref">
+        <thead><tr><th>Column</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td><strong>Required.</strong> Unique short name. Other rows point at it.</td></tr>
+          <tr><td><code>parent</code></td><td>The id this person reports to. Empty for the top.</td></tr>
+          <tr><td><code>unit</code></td><td>On a unit's leader only. Turns the card into a unit card with this heading.</td></tr>
+          <tr><td><code>name</code>, <code>title</code></td><td>Shown on the card. Empty name on a vacant row shows "Open role".</td></tr>
+          <tr><td><code>roles</code></td><td>Chips under the name. Separate with <code>;</code> (JSON: an array).</td></tr>
+          <tr><td><code>deputy_of</code></td><td>Makes this person that leader's deputy: inside the leader's card, beside it, or on the line under it (Look → Deputies).</td></tr>
+          <tr><td><code>start_date</code></td><td>Year-month-day (2026-11-05). Recent starters get a New tag.</td></tr>
+          <tr><td><code>link</code></td><td>On an open role: a job posting address. Adds a Help wanted tag and a link in the details.</td></tr>
+          <tr><td><code>class</code></td><td>Your own CSS class names for the card, to style in your template.</td></tr>
+          <tr><td><code>deputy_style</code></td><td>On a leader's row: <code>inside</code>, <code>beside</code> or <code>stem</code>, overriding Look → Deputies for that leader.</td></tr>
+          <tr><td><code>placement</code></td><td><code>side</code> (right), <code>side-left</code>, <code>side-right</code>, <code>assistant</code> (auto side), <code>assistant-left</code>, <code>assistant-right</code>. Empty means a normal card below.</td></tr>
+          <tr><td><code>vacant</code></td><td><code>1</code> / <code>true</code> for an open role.</td></tr>
+          <tr><td><code>description</code></td><td>On unit cards and in the details panel.</td></tr>
+          <tr><td><code>also_reports_to</code></td><td>Dotted-line managers by id, separated by <code>;</code>. Drawn as dotted lines and listed in details.</td></tr>
+          <tr><td><code>department</code>, <code>office</code>, <code>location</code>, <code>email</code>, <code>phone</code></td><td>Details panel.</td></tr>
+          <tr><td><code>photo</code></td><td>Image path or URL. Initials are used without one.</td></tr>
+          <tr><td><code>accent</code></td><td>Card color, e.g. <code>#7b4fd6</code>. Deputies use their leader's.</td></tr>
+          <tr><td><code>width</code></td><td>Card width in px (120 to 900). Empty uses the chart's card width.</td></tr>
+          <tr><td><code>background</code></td><td>Card background: hex, <code>rgb()</code>/<code>rgba()</code>, <code>hsl()</code>, a color name, or <code>var(--name)</code> (works when your site's template defines it; used as typed). Text color is picked automatically to pass WCAG AA (4.5:1), measured against what the card really looks like, including see-through colors.</td></tr>
+          <tr><td><code>color</code></td><td>Your own text color for a card with a background. Used only if it passes AA; otherwise the automatic color is used and Problems says so.</td></tr>
+        </tbody>
+      </table>
+      <p>Any other column is kept as-is in exports and ignored by the chart. Row order sets left-to-right order.</p>
+      <h2>AI conversion prompt</h2>
+      <p>For turning a PDF or image of a chart into a file: paste this into your AI tool and attach the chart plus the AI example file. The example is a small flat chart in exactly the format the prompt asks for. It's also in the module, in <code>media/mod_peckingorder/samples/pecking-order-ai-example.json</code>.</p>
+      <div class="pks-row"><button class="btn" type="button" id="pks-copyprompt">Copy prompt</button><button class="btn" type="button" id="pks-aiex-save">Download AI example</button></div>
+      <pre class="pks-out" id="pks-prompt" tabindex="0" aria-label="AI conversion prompt">/*@prompt*/</pre>
+      <script type="application/json" id="pks-aiex">/*@aiexample*/</script>
+    </div>
+  </aside>
+</main>
+<footer class="pks-status"><span id="pks-count"></span><span>Pecking Order Studio /*@version*/ · Chaotic Fish Design</span></footer>
+<input type="file" id="pks-input" accept=".json,.csv,application/json,text/csv" hidden>
+<dialog class="pks-dlg" id="pks-map" aria-labelledby="pks-map-h">
+  <form method="dialog">
+    <h2 id="pks-map-h">Match your columns</h2>
+    <p class="pks-hint">This file's columns aren't Pecking Order's (an HR export, maybe). Pick the column that holds each thing; Studio guessed what it could. Your original file isn't changed.</p>
+    <div class="pks-map-grid" id="pks-map-grid"></div>
+    <div class="pks-map-grid">
+      <label for="pks-map-mgr">The Reports to column holds</label>
+      <select id="pks-map-mgr"><option value="id">Their manager's ID</option><option value="name">Their manager's name</option></select>
+      <label for="pks-map-dates" id="pks-map-dates-row-l">Start dates are written</label>
+      <span id="pks-map-dates-row"><select id="pks-map-dates"><option value="mdy">Month/day/year (US)</option><option value="dmy">Day/month/year</option></select></span>
+    </div>
+    <p class="pks-map-sum" id="pks-map-sum" aria-live="polite"></p>
+    <div class="pks-dlg-btns">
+      <button class="pks-dbtn" value="cancel">Cancel</button>
+      <button class="pks-dbtn is-primary" value="ok" id="pks-map-ok">Use these columns</button>
+    </div>
+  </form>
+</dialog>
+<div class="pks-toast" id="pks-toast" role="status" aria-live="polite"></div>
+
+<script type="text/csv" id="pks-sample">
+/*@sample*/
+</script>
+<script>
+/*@js*/
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+[
+ {
+  "id": "bigfish",
+  "unit": "The Reef",
+  "name": "Big Fish",
+  "title": "Chief Executive Fish",
+  "roles": "Vision;Snacks",
+  "department": "Executive",
+  "location": "The Shallows",
+  "email": "bigfish@example.com",
+  "description": "Every org chart has a pecking order. Ours has fish.",
+  "width": "420"
+ },
+ {
+  "id": "hammer",
+  "parent": "bigfish",
+  "deputy_of": "bigfish",
+  "name": "Hammer Head",
+  "title": "Deputy, Operations",
+  "roles": "Logistics",
+  "department": "Executive",
+  "location": "The Shallows"
+ },
+ {
+  "id": "mahi",
+  "parent": "bigfish",
+  "deputy_of": "bigfish",
+  "name": "Mahi Mahi",
+  "title": "Deputy, Everything Else",
+  "roles": "Culture",
+  "department": "Executive",
+  "location": "Remote",
+  "start_date": "2026-10-28"
+ },
+ {
+  "id": "remora",
+  "parent": "bigfish",
+  "placement": "side-left",
+  "name": "Remy Remora",
+  "title": "Chief of Staff",
+  "roles": "Scheduling",
+  "department": "Executive",
+  "location": "The Shallows"
+ },
+ {
+  "id": "clown",
+  "parent": "bigfish",
+  "placement": "side",
+  "name": "Clownfish Carl",
+  "title": "Head of Comms",
+  "roles": "Puns",
+  "department": "Executive",
+  "location": "Remote"
+ },
+ {
+  "id": "pearl",
+  "parent": "bigfish",
+  "placement": "assistant-left",
+  "name": "Pearl Oyster",
+  "title": "Executive Assistant",
+  "department": "Executive",
+  "location": "The Shallows"
+ },
+ {
+  "id": "seahorse",
+  "parent": "bigfish",
+  "placement": "assistant-right",
+  "name": "Seahorse Sam",
+  "title": "Senior Advisor",
+  "roles": "Strategy",
+  "department": "Executive",
+  "location": "The Deep"
+ },
+ {
+  "id": "eng",
+  "parent": "bigfish",
+  "unit": "Engineering",
+  "name": "Octavia Pus",
+  "title": "Lead",
+  "accent": "#7b4fd6",
+  "roles": "Eight arms",
+  "department": "Engineering",
+  "location": "The Deep",
+  "description": "Builds the reef. All eight arms on keyboards."
+ },
+ {
+  "id": "squid",
+  "parent": "eng",
+  "deputy_of": "eng",
+  "name": "Squid Vicious",
+  "title": "Deputy Lead",
+  "department": "Engineering",
+  "location": "The Deep"
+ },
+ {
+  "id": "nemo",
+  "parent": "eng",
+  "name": "Nemo Codewell",
+  "title": "Developer",
+  "roles": "Frontend",
+  "department": "Engineering",
+  "location": "Remote",
+  "start_date": "2026-11-02"
+ },
+ {
+  "id": "dory",
+  "parent": "eng",
+  "name": "Dory Debugs",
+  "title": "Quality",
+  "roles": "Testing",
+  "department": "Engineering",
+  "location": "The Deep"
+ },
+ {
+  "id": "eel",
+  "parent": "eng",
+  "name": "Eel Electric",
+  "title": "DevOps",
+  "roles": "Power",
+  "department": "Engineering",
+  "location": "The Deep"
+ },
+ {
+  "id": "ops",
+  "parent": "bigfish",
+  "unit": "Operations",
+  "name": "Manta Ray",
+  "title": "Lead",
+  "accent": "#2b8a3e",
+  "roles": "Logistics",
+  "department": "Operations",
+  "location": "The Shallows",
+  "description": "Keeps the currents running on time."
+ },
+ {
+  "id": "opsdep",
+  "parent": "ops",
+  "deputy_of": "ops",
+  "name": "",
+  "title": "Deputy Lead",
+  "vacant": "1",
+  "link": "mailto:weirdideas@chaoticfishdesign.com?subject=Reef%20job",
+  "department": "Operations",
+  "location": "The Shallows"
+ },
+ {
+  "id": "tuna",
+  "parent": "ops",
+  "name": "Tuna Turner",
+  "title": "Fleet Coordinator",
+  "department": "Operations",
+  "location": "The Shallows"
+ },
+ {
+  "id": "care",
+  "parent": "bigfish",
+  "unit": "Reef Care",
+  "name": "Coral Gables",
+  "title": "Lead",
+  "accent": "#e8590c",
+  "roles": "Habitat",
+  "department": "Reef Care",
+  "location": "The Shallows",
+  "description": "Gardens, guests and very small crabs."
+ },
+ {
+  "id": "anemone",
+  "parent": "care",
+  "deputy_of": "care",
+  "name": "Anemone Ann",
+  "title": "Deputy Lead",
+  "department": "Reef Care",
+  "location": "The Shallows"
+ },
+ {
+  "id": "barnacle",
+  "parent": "care",
+  "name": "Barnacle Bill",
+  "title": "Facilities",
+  "roles": "Sticking around",
+  "department": "Reef Care",
+  "location": "The Shallows"
+ },
+ {
+  "id": "stella",
+  "parent": "care",
+  "name": "Starfish Stella",
+  "title": "Volunteer Coordinator",
+  "department": "Reef Care",
+  "location": "Remote",
+  "start_date": "2026-11-20"
+ },
+ {
+  "id": "snacks",
+  "parent": "bigfish",
+  "unit": "Snack Logistics",
+  "name": "Pufferfish Puff",
+  "title": "Lead",
+  "accent": "#fcc419",
+  "roles": "Kelp chips",
+  "department": "Snack Logistics",
+  "location": "The Shallows",
+  "description": "Keeps the kelp chips coming."
+ },
+ {
+  "id": "taster",
+  "parent": "snacks",
+  "name": "",
+  "title": "Kelp Chip Taster",
+  "vacant": "1",
+  "link": "mailto:weirdideas@chaoticfishdesign.com?subject=Reef%20job",
+  "department": "Snack Logistics",
+  "location": "The Shallows"
+ },
+ {
+  "id": "sec",
+  "parent": "bigfish",
+  "unit": "Security",
+  "name": "Shark Week",
+  "title": "Lead",
+  "accent": "#1971c2",
+  "roles": "Teeth",
+  "department": "Security",
+  "location": "The Deep",
+  "description": "Friendly. Mostly."
+ },
+ {
+  "id": "cuda",
+  "parent": "sec",
+  "name": "Barracuda Bob",
+  "title": "Night Watch",
+  "department": "Security",
+  "location": "The Deep",
+  "also_reports_to": "hammer"
+ }
+]

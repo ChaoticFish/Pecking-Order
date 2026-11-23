@@ -1,0 +1,20 @@
+id,parent,unit,name,title,roles,department,office,email,phone,location,photo,description,deputy_of,also_reports_to,placement,vacant,accent
+office,,Office,Marlin Hayes,Director,,Front Office,HQ-100,marlin@example.org,555-0100,Building A,,"Sets direction for the whole office and owns the budget.",,,,,
+dd1,office,,Coral Nguyen,Deputy Director 01,Operations;Budget,Front Office,HQ-101,coral@example.org,555-0101,Building A,,,office,,,,
+dd2,office,,Gil Petrov,Deputy Director 02,Programs;Partnerships,Front Office,HQ-102,gil@example.org,555-0102,Building A,,,office,,,,
+cos,office,,Perch Okafor,Chief of Staff,Front office;Scheduling,Front Office,HQ-103,perch@example.org,555-0103,Building A,,,,,side,,
+spm,office,,Wanda Brill,Senior PM,,Front Office,HQ-104,wanda@example.org,555-0104,Building A,,,,,side,,
+sct,office,,Finn Albright,Senior Contracts,,Front Office,HQ-105,finn@example.org,555-0105,Building A,,,,,side,,
+c01,office,,Rocky Shoals,Chief 01,Policy,Front Office,HQ-110,rocky@example.org,555-0110,Building A,,,,,assistant,,
+td,office,,Ray Mantis,Technical Director,Architecture;Standards,Engineering,HQ-120,ray@example.org,555-0120,Building B,,,,,assistant,,
+sec,td,,Pike Morrow,Senior Security,,Engineering,HQ-121,pike@example.org,555-0121,Building B,,,,,side,,
+g1,office,Group 1,Bluegill Barnes,Chief,,Group 1,G1-200,bluegill@example.org,555-0200,Building C,,"Builds and runs the core platform.",,,,,#05b5c3
+g1d,g1,,Shelly Tran,Dep Chief,,Group 1,G1-201,shelly@example.org,555-0201,Building C,,,g1,,,,
+g2,office,Group 2,Sandy Bass,Chief,,Group 2,G2-300,sandy@example.org,555-0300,Building C,,"Data, analytics and reporting.",,,,,#7b4fd6
+g2d,g2,,Kelp Ostrowski,Dep Chief,,Group 2,G2-301,kelp@example.org,555-0301,Building C,,,g2,td,,,
+g3,office,Group 3,,Chief,,Group 3,G3-400,,,Building D,,"Customer support and training.",,,,1,#f26a2e
+g3d,g3,,Nemo Alvarez,Dep Chief,Acting Chief,Group 3,G3-401,nemo@example.org,555-0401,Building D,,,g3,,,,
+g4,office,Group 4,Tuna Whitfield,Chief,,Group 4,G4-500,tuna@example.org,555-0500,Building D,,"Facilities, logistics and the coffee machine.",,,,,#fcd602
+g4d,g4,,,Dep Chief,,Group 4,,,,,,,g4,,,1,
+g5,office,Group 5,Angela Fish,Chief,,Group 5,G5-600,angela@example.org,555-0600,Building E,,"Security operations and compliance.",,,,,#05b5c3
+g5d,g5,,Barry Cuda,Dep Chief,,Group 5,G5-601,barry@example.org,555-0601,Building E,,,g5,sec,,,

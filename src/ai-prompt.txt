@@ -1,0 +1,54 @@
+You are converting an organization chart into a data file for "Pecking Order", an org chart module. I've attached the org chart (a PDF or image) and an example JSON file that shows the exact format.
+
+YOUR JOB
+Read every box on the chart and record who each position is and who it reports to. Copy what the chart says; never invent anything. If you can't read something, leave it out and say so under Assumptions.
+
+OUTPUT
+1. One JSON array in a single ```json code block: one object per box (person or position), in the same flat format as the example file. No wrapper object, no nested "children".
+2. A section titled "Assumptions": anything you guessed, couldn't read, or weren't sure how to place. Write "None" if there's nothing.
+3. A section titled "Suggested settings": which of these match how the original chart looks, so I can set the module to match:
+   - Chart direction: Top to bottom, or Left to right
+   - Deputies: Inside the leader's card (deputies drawn inside the leader's box), Beside the leader (their own boxes next to the leader), or Shared stem (their own boxes on the line just under the leader)
+   - People per row: for any box with several people inside, how many sit side by side (I'll check the columns values you set).
+   - Color key: only if the chart color-codes groups. One line per color, as "#rrggbb = what it means". Hex values are your best approximation.
+
+FIELDS (leave out any field you have no value for)
+- id (required): short, unique, lowercase; letters, numbers and hyphens only. Base it on the POSITION, not the person, so the same box gets the same id next time the chart is converted: "office", "office-dep1", "grp3", "grp3-dep", "grp3-lead-a". Never put names in ids.
+- parent: id of the box this one reports to. Leave it out only for the top of the chart.
+- name: the person's name exactly as shown. Leave it out if the box is empty, says vacant/TBD, or shows a placeholder.
+- title: the job title exactly as shown.
+- unit: ONLY on the leader of a named unit (an office, group, division or branch): the unit's name exactly as shown, e.g. "Office of the Director", "Group 3".
+- deputy_of: the leader's id, when this person is that leader's deputy. A deputy ALSO gets parent = the same leader. Deputies are drawn inside the leader's box, beside it joined by a double or short line, or just under it on the line, and usually have "Deputy" in their title.
+- placement: how a box hangs off its parent. Leave it out for a normal box on the line below.
+    "side-left" / "side-right": a staff box (e.g. Chief of Staff, Senior Advisor) connected to the LEFT or RIGHT EDGE of the parent's box, not below it.
+    "assistant-left" / "assistant-right": a box sitting ON the vertical line coming down from the parent, connected sideways to that line, above the parent's other reports.
+    "team": a labeled group INSIDE a leader's box, with its own small heading (e.g. "Support Team", often with a shared email). The team gets name = the heading, email if shown, and deputy_of = parent = the leader. Each person in the team gets deputy_of = parent = the team's id.
+- A box that is only a heading over a list of people (e.g. "Executive Staff" with no single leader): unit = the heading, no name or title. Each person listed in it gets deputy_of = parent = that box's id.
+- columns: on a box with several people inside it, how many sit side by side in each row ("1" for a single column, "2" for pairs). Leave it out if they're all in one row. A team can have its own.
+- group_titles: true on a box (or team) where one title is printed once with several names under it. Give each of those people the same title.
+- stack: "yes" on a boss whose reports are drawn two per row down the line instead of in one long row.
+- vacant: true when the box says vacant, open, TBD or "to be hired", or shows a title with no name for a real position.
+- roles: an array of short tags shown in the box under the name, e.g. ["Operations", "Budget"]. An acting arrangement ("Acting: Sam Ortiz") goes here too.
+- description: a short line of text shown in the box. Put a unit's description on its leader.
+- also_reports_to: an array of ids, for dotted-line or "also reports to" managers shown on the chart.
+- department, office, location, email, phone: only if the chart shows them for that box.
+- start_date: YYYY-MM-DD, only if the chart shows a start date.
+- link: only for a vacant box that shows a job posting address.
+
+RULES
+- One object per box. Count the boxes on the chart and make sure the count matches.
+- Keep each boss's reports in the chart's left-to-right order (top-to-bottom for a sideways chart).
+- Someone whose box hangs below a deputy reports to that deputy: parent = the deputy's id.
+- A box drawn inside another box is a deputy (deputy_of), never a separate report.
+- Every parent, deputy_of and also_reports_to id must exist in your file. No loops.
+- Use only the fields listed above, spelled exactly as shown, and match the example file's style.
+- Don't fill in emails, phones, offices, colors or dates the chart doesn't show.
+- If the chart is too big to finish in one reply, stop after a complete branch, end with "CONTINUE FROM: <id of the next box>", and I'll ask you to continue.
+
+CHECK BEFORE ANSWERING
+- Every id unique and position-based; no names in ids.
+- Every parent, deputy_of and also_reports_to points at an id that exists.
+- Exactly one box without a parent, unless the chart clearly has several tops.
+- Every deputy and team member has both deputy_of and parent set to the box they sit in.
+- Every team has placement "team" and deputy_of set to the leader whose box it's in.
+- No box from the chart missing; nothing added that isn't on the chart.
